@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Блоки</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+
+    .outer {
+      border: 3px solid #333;
+      background: #d9e8ff;
+      padding: 20px;
+      margin-bottom: 30px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .inner {
+      border: 2px solid #555;
+      background: #ffffff;
+      width: 200px;
+      height: 100px;
+      margin: 10px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .inner2 {
+      border: 2px dashed #0077cc;
+      background: #e6f7ff;
+      width: 150px;
+      height: 70px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<h1>Блоки</h1>
+
+<div class="outer">
+  <p>Зовнішній блок</p>
+
+  <div class="inner">
+    <p>Внутрішній блок 1</p>
+  </div>
+
+  <div class="inner">
+    <p>Внутрішній блок 2</p>
+  </div>
+</div>
+
+
+<div class="outer">
+  <p>Блок з вкладенням у вкладення</p>
+
+  <div class="inner">
+    <p>Перший рівень</p>
+
+    <div class="inner2">
+      <p>Другий рівень</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="outer">
+  <p>Приклад структури блоків</p>
+
+  <div class="inner">
+    <p>Блок A</p>
+  </div>
+
+  <div class="inner">
+    <p>Блок B</p>
+  </div>
+
+  <div class="inner">
+    <p>Блок C</p>
+  </div>
+</div>
+
+</body>
+</html>
