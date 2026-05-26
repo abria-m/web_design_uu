@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Усі види анімації</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .box1 {
+      width: 80px;
+      height: 80px;
+      background: red;
+      position: relative;
+      animation: moveRight 2s infinite alternate;
+    }
+
+    @keyframes moveRight {
+      from { left: 0; }
+      to { left: 300px; }
+    }
+
+
+    .box2 {
+      width: 80px;
+      height: 80px;
+      background: green;
+      position: relative;
+      animation: moveDown 2s infinite alternate;
+    }
+
+    @keyframes moveDown {
+      from { top: 0; }
+      to { top: 150px; }
+    }
+
+
+    .box3 {
+      width: 80px;
+      height: 80px;
+      background: blue;
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(270deg); }
+    }
+
+
+    .box4 {
+      width: 80px;
+      height: 80px;
+      background: purple;
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(2); }
+      100% { transform: scale(1); }
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background: orange;
+      border: none;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: scale(1.2);
+      background: darkorange;
+    }
+
+    .combo {
+      width: 80px;
+      height: 80px;
+      background: black;
+      position: relative;
+      animation: moveRotate 3s infinite alternate;
+    }
+
+    @keyframes moveRotate {
+      0% {
+        left: 0;
+        transform: rotate(0deg);
+      }
+      100% {
+        left: 300px;
+        transform: rotate(180deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Анімація за допомогою тегу marquee та css властивості animation</h1>
+
+<div class="section">
+  <h2>Marquee</h2>
+
+  <marquee direction="left" scrollamount="8">
+    Текст рухається зліва направо
+  </marquee>
+
+  <marquee behavior="alternate" scrollamount="10">
+    Стрибкоподібний рух тексту
+  </marquee>
+</div>
+
+<div class="section">
+  <h2>Горизонтальний рух</h2>
+  <div class="box1"></div>
+</div>
+
+<div class="section">
+  <h2>Вертикальний рух</h2>
+  <div class="box2"></div>
+</div>
+
+<div class="section">
+  <h2>Обертання</h2>
+  <div class="box3"></div>
+</div>
+
+<div class="section">
+  <h2>Пульсація</h2>
+  <div class="box4"></div>
+</div>
+
+<div class="section">
+  <h2>Плавна поява тексту</h2>
+  <p class="text">Цей текст з’являється плавно</p>
+</div>
+
+<div class="section">
+  <h2>Кнопка з ефектом</h2>
+  <button class="btn">Наведи на мене</button>
+</div>
+
+<div class="section">
+  <h2>Комбінована анімація</h2>
+  <div class="combo"></div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+<marquee behavior="alternate" direction="left" scrollamount="4000"> 
+  працює
+</marquee>

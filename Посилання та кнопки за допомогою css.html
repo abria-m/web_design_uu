@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Посилання та кнопки за допомогою css</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        h1{
+            text-align: center;
+            color: darkblue;
+        }
+
+        h2{
+            color: darkred;
+        }
+
+        a{
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover{
+            color: red;
+            text-decoration: underline;
+        }
+
+        .myButton{
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: green;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: 0.3s;
+        }
+
+        .myButton:hover{
+            background-color: darkgreen;
+            transform: scale(1.05);
+        }
+
+        .generatorButton {
+            box-shadow: inset 0px 1px 0px 0px #ffffff;
+            background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+            background-color: #ededed;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            display: inline-block;
+            cursor: pointer;
+            color: #777777;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 24px;
+            text-decoration: none;
+        }
+
+        .generatorButton:hover {
+            background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+        }
+
+        .jsButton{
+            padding: 12px 25px;
+            background-color: orange;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .jsButton:hover{
+            background-color: darkorange;
+        }
+
+        .topLink{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1 id="top">Посилання та кнопки за допомогою css</h1>
+
+    <h2>Зміст</h2>
+
+    <ul>
+        <li><a href="#section1">Статистичні критерії</a></li>
+        <li><a href="#section2">Таблиці зі студентами</a></li>
+        <li><a href="#section3">JavaScript приклад</a></li>
+    </ul>
+
+    <h2 id="section1">Статистичні критерії</h2>
+
+    <p>
+Статистичні критерії — це спеціальні математичні методи, які використовуються для перевірки гіпотез та аналізу експериментальних даних.
+Вони допомагають визначити, чи є отримані результати випадковими, чи між досліджуваними величинами існує реальний зв’язок або відмінність. 
+Основою застосування статистичних критеріїв є порівняння фактичних даних із теоретичними припущеннями. У процесі дослідження формулюється нульова гіпотеза, 
+яка зазвичай стверджує відсутність різниці або залежності, та альтернативна гіпотеза, що вказує на наявність певного ефекту. Після обчислення значення критерію приймається рішення
+про підтвердження або відхилення нульової гіпотези.
+Існує велика кількість статистичних критеріїв, кожен із яких використовується залежно від типу даних та мети дослідження. 
+Наприклад, критерій Стьюдента застосовується для порівняння середніх значень двох вибірок, критерій Пірсона використовується для аналізу взаємозв’язку між ознаками, 
+а критерій χ² (хі-квадрат) допомагає перевірити відповідність експериментальних даних теоретичному розподілу. Використання статистичних критеріїв є важливим у наукових дослідженнях,
+економіці, медицині, соціології та інших галузях, оскільки вони дозволяють отримати об’єктивні та обґрунтовані висновки на основі числових даних.
+
+    </p>
+	
+	<p>
+	Більше про статистична критерії можна дізнатися у попередній роботі:
+	</p>
+
+ 
+    <a class="myButton"
+       href="https://keen-faun-696778.netlify.app"
+       target="_blank">
+
+        Статистичні критерії
+
+    </a>
+
+    <h2 id="section2">Таблиці зі студентами</h2>
+
+	<p>
+		Таблиці, подібні до тих, що використовуються в Microsoft Excel, є невід’ємною частиною запису та обробки даних студентів у школах і університетах. 
+		Вони дозволяють зручно зберігати інформацію про успішність, відвідуваність, результати тестів, особисті дані студентів та інші важливі показники. 
+		Завдяки структурованому вигляду таблиць викладачі та адміністрація навчальних закладів можуть швидко знаходити потрібну інформацію, виконувати обчислення та 
+		формувати звіти. Використання електронних таблиць значно спрощує процес аналізу даних і автоматизує багато рутинних операцій. 
+		Наприклад, за допомогою формул можна автоматично обчислювати середній бал студентів, визначати рейтинг групи або аналізувати статистичні показники успішності. 
+		Крім того, таблиці забезпечують наочність даних через можливість побудови діаграм, графіків та гістограм, що робить їх важливим інструментом у сучасній освітній системі.
+
+    </p>
+	
+    <p>
+		Як саме, можна дізнатится тут:
+    </p>
+	
+
+
+    <a class="generatorButton"
+       href="https://spontaneous-starlight-c01b43.netlify.app"
+       target="_blank">
+
+        Таблиця зі студентами
+
+    </a>
+
+    <h2 id="section3">JavaScript приклад</h2>
+
+    <p>
+        За допомогою JavaScript можна
+        також створювати кнопки що запускають JavaScript функції.
+    </p>
+
+    <p>
+        Натисніть кнопку нижче для запуску
+        JavaScript функції.
+    </p>
+
+    <button class="jsButton" onclick="showMessage()">
+        Кнопка
+    </button>
+
+    <script>
+
+        function showMessage(){
+            alert("Ура! Кнопка працює.");
+        }
+
+    </script>
+
+    <br><br>
+
+    <a class="topLink" href="#top">
+        Повернутися вгору
+    </a>
+
+</body>
+</html>
