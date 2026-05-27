@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Форми</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Форми</h2>
+
+
+<div class="block">
+    <h3>Форма з обчисленням суми (ввід даних користувача)</h3>
+
+    <input type="number" id="num1" placeholder="Перше число">
+    <input type="number" id="num2" placeholder="Друге число">
+
+    <button onclick="calculateSum()">Обчислити</button>
+
+    <p id="result1"></p>
+</div>
+
+<script>
+function calculateSum() {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    let sum = a + b;
+
+    document.getElementById("result1").innerText = "Результат: " + sum;
+}
+</script>
+
+
+<div class="block">
+    <h3>Приклад перевірки повноліття</h3>
+	<p>
+	Введіть будь ласка свій вік
+	</p>
+	
+    <input type="number" id="age" placeholder="Введіть вік">
+
+    <button onclick="checkAge()">Перевірити</button>
+
+    <p id="result2"></p>
+</div>
+
+<script>
+function checkAge() {
+    let age = Number(document.getElementById("age").value);
+
+    if (age >= 18) {
+        document.getElementById("result2").innerText = "Ви повнолітній. Ласкаво просимо!";
+    } else {
+        document.getElementById("result2").innerText = "Ви неповнолітній! Доступ до цього сайту заборонено!";
+    }
+}
+</script>
+
+
+<div class="block">
+    <h3>Перетворення введення значень рядка в текст</h3>
+
+    <input type="text" id="textInput" placeholder="Введіть текст">
+
+    <button onclick="convertText()">Перетворити</button>
+
+    <p id="result3"></p>
+</div>
+
+<script>
+function convertText() {
+    let text = document.getElementById("textInput").value;
+
+    let result = text.toUpperCase();
+
+    document.getElementById("result3").innerText = result;
+}
+</script>
+
+</body>
+</html>
