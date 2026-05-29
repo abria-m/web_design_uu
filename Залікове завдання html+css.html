@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Академічна Доброчесність</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-light: #3d3d5c;
+    --parchment: #f7f4ef;
+    --parchment-dark: #ede8df;
+    --gold: #b5882a;
+    --gold-light: #d4aa4f;
+    --gold-pale: #f5edd8;
+    --teal: #1b5e6e;
+    --teal-light: #2a8fa8;
+    --teal-pale: #e3f2f7;
+    --crimson: #8b1a2e;
+    --white: #ffffff;
+    --shadow: rgba(26,26,46,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--parchment-dark);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px var(--shadow); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: .03em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .875rem;
+    font-weight: 400;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    padding-top: 4.5rem;
+  }
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+  }
+  .hero-eyebrow {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 1rem 2rem;
+    font-size: .875rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .25s, transform .2s;
+    width: fit-content;
+  }
+  .hero-cta:hover { background: var(--teal); transform: translateX(4px); }
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  .hero-visual {
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 30%, rgba(181,136,42,.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(27,94,110,.25) 0%, transparent 55%);
+  }
+  .hero-quote {
+    position: relative;
+    z-index: 1;
+    padding: 4rem;
+    text-align: center;
+  }
+  .hero-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--parchment);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .hero-quote cite {
+    font-size: .8rem;
+    font-weight: 400;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-style: normal;
+  }
+  .hero-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto;
+  }
+
+  section { padding: 6rem 5rem; }
+  .section-label {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 3rem;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .section-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    max-width: 55ch;
+    line-height: 1.85;
+  }
+
+  #principles { background: var(--white); }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--parchment-dark);
+    margin-top: 4rem;
+    border: 1px solid var(--parchment-dark);
+  }
+  .principle-card {
+    background: var(--white);
+    padding: 2.5rem;
+    transition: background .25s;
+  }
+  .principle-card:hover { background: var(--gold-pale); }
+  .principle-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    opacity: .5;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .principle-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: .75rem;
+  }
+  .principle-desc {
+    font-size: .9rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  #history {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  #history .section-title { color: var(--parchment); }
+  #history .section-intro { color: rgba(247,244,239,.65); }
+  .timeline {
+    margin-top: 4rem;
+    position: relative;
+    padding-left: 3rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity .6s, transform .6s;
+  }
+  .timeline-item.visible { opacity: 1; transform: none; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -3.5rem;
+    top: .4rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+  }
+  .timeline-year {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: .4rem;
+  }
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--parchment);
+    margin-bottom: .5rem;
+  }
+  .timeline-desc {
+    font-size: .9rem;
+    font-weight: 300;
+    color: rgba(247,244,239,.6);
+    max-width: 55ch;
+    line-height: 1.7;
+  }
+
+  #importance { background: var(--parchment); }
+  .importance-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .importance-visual {
+    position: sticky;
+    top: 6rem;
+  }
+  .stat-block {
+    background: var(--teal);
+    padding: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-block::after {
+    content: '';
+    position: absolute;
+    right: -2rem; bottom: -3rem;
+    width: 12rem; height: 12rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: .5rem;
+  }
+  .stat-label {
+    font-size: .85rem;
+    font-weight: 400;
+    color: rgba(255,255,255,.75);
+    letter-spacing: .06em;
+  }
+  .stat-block.gold { background: var(--gold); }
+  .importance-points { }
+  .importance-point {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--parchment-dark);
+  }
+  .importance-point:last-child { border-bottom: none; }
+  .importance-point h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: .5rem;
+  }
+  .importance-point p {
+    font-size: .9rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  #violations { background: var(--white); }
+  .violations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .violation-card {
+    border: 1px solid var(--parchment-dark);
+    padding: 2rem;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .violation-card:hover {
+    border-color: var(--crimson);
+    box-shadow: 0 4px 24px rgba(139,26,46,.08);
+  }
+  .violation-icon {
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(139,26,46,.08);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .violation-icon svg { width: 18px; height: 18px; stroke: var(--crimson); }
+  .violation-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: .5rem;
+  }
+  .violation-card p {
+    font-size: .875rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  #ukraine {
+    background: linear-gradient(135deg, #005BBB 0%, #005BBB 50%, #FFD500 50%, #FFD500 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #ukraine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,30,.88);
+  }
+  #ukraine > * { position: relative; z-index: 1; }
+  #ukraine .section-title { color: var(--parchment); }
+  #ukraine .section-intro { color: rgba(247,244,239,.7); }
+  .ukraine-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .ukraine-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 2rem;
+    transition: background .25s;
+  }
+  .ukraine-card:hover { background: rgba(255,255,255,.1); }
+  .ukraine-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--parchment);
+    margin-bottom: .75rem;
+  }
+  .ukraine-card p {
+    font-size: .875rem;
+    font-weight: 300;
+    color: rgba(247,244,239,.65);
+    line-height: 1.75;
+  }
+  .ukraine-year {
+    display: inline-block;
+    font-size: .7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: .75rem;
+  }
+
+  #pledge { background: var(--parchment); text-align: center; }
+  .pledge-box {
+    max-width: 680px;
+    margin: 3rem auto 0;
+    border: 1px solid var(--parchment-dark);
+    padding: 4rem;
+    position: relative;
+    background: var(--white);
+  }
+  .pledge-box::before, .pledge-box::after {
+    content: '';
+    position: absolute;
+    width: 1.5rem; height: 1.5rem;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .pledge-box::before { top: .75rem; left: .75rem; border-width: 1px 0 0 1px; }
+  .pledge-box::after { bottom: .75rem; right: .75rem; border-width: 0 1px 1px 0; }
+  .pledge-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .pledge-sig {
+    font-size: .8rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: .75rem 2rem;
+    border: 1px solid var(--teal);
+    transition: background .25s, color .25s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pledge-sig:hover { background: var(--teal); color: var(--white); }
+  .pledge-signed {
+    display: none;
+    color: var(--teal);
+    font-size: .9rem;
+    margin-top: 1rem;
+  }
+
+  footer {
+    background: var(--ink);
+    padding: 3rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--parchment);
+  }
+  .footer-logo span { color: var(--gold-light); }
+  footer p {
+    font-size: .8rem;
+    color: rgba(247,244,239,.4);
+    letter-spacing: .05em;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 50vh; }
+    .hero-text { padding: 3rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .importance-layout { grid-template-columns: 1fr; }
+    .importance-visual { position: static; }
+    .violations-grid { grid-template-columns: 1fr; }
+    .ukraine-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Академічна <span>Доброчесність</span></a>
+  <ul class="nav-links">
+    <li><a href="#principles">Принципи</a></li>
+    <li><a href="#importance">Важливість</a></li>
+    <li><a href="#violations">Порушення</a></li>
+    <li><a href="#ukraine">Україна</a></li>
+    <li><a href="#pledge">Клятва</a></li>
+  </ul>
+</nav>
+
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Доброчесність у науці</div>
+    <h1>Чесність — <em>основа</em> знання</h1>
+    <p class="hero-desc">
+      Академічна доброчесність — це система цінностей і принципів, що визначає чесне, відповідальне та прозоре ставлення до навчання, наукових досліджень і академічного середовища.
+    </p>
+    <a href="#principles" class="hero-cta">
+      Дізнатись більше
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-quote">
+      <blockquote>«Той, хто вчиться обманювати сьогодні, стане нечесним лідером завтра»</blockquote>
+      <div class="hero-ornament"></div>
+      <cite>Девід Лабрі, педагог та дослідник освіти</cite>
+    </div>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="section-label">Ключові цінності</div>
+  <h2 class="section-title">Шість принципів<br>академічної доброчесності</h2>
+  <p class="section-intro">Міжнародний центр академічної доброчесності (ICAI) визначив шість основних принципів, що формують культуру чесності в освіті.</p>
+
+  <div class="principles-grid fade-up">
+    <div class="principle-card">
+      <div class="principle-num">01</div>
+      <div class="principle-name">Чесність</div>
+      <p class="principle-desc">Правдивість у своїх вчинках, думках і словах. Представлення лише власної роботи та достовірних даних без фальсифікацій.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">02</div>
+      <div class="principle-name">Довіра</div>
+      <p class="principle-desc">Побудова атмосфери, де кожен учасник академічної спільноти може покластися на слово та роботу іншого без сумнівів.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">03</div>
+      <div class="principle-name">Справедливість</div>
+      <p class="principle-desc">Однакові стандарти та правила для всіх — незалежно від статусу, зв'язків або походження. Рівний доступ до оцінювання.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">04</div>
+      <div class="principle-name">Повага</div>
+      <p class="principle-desc">Шанобливе ставлення до думок інших, визнання їхнього внеску, дотримання норм наукової дискусії та критики.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">05</div>
+      <div class="principle-name">Відповідальність</div>
+      <p class="principle-desc">Готовність відповідати за свої дії та рішення, визнавати помилки і активно підтримувати норми доброчесності навколо.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">06</div>
+      <div class="principle-name">Мужність</div>
+      <p class="principle-desc">Сміливість дотримуватися принципів навіть тоді, коли це складно — відмовлятись від спокус та повідомляти про порушення.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="importance">
+  <div class="section-label">Чому це важливо</div>
+  <h2 class="section-title">Значення для<br>суспільства і особистості</h2>
+  <p class="section-intro">Академічна доброчесність — це не лише шкільне правило. Це основа, на якій будується довіра до науки, медицини, права та всіх сфер людського знання.</p>
+
+  <div class="importance-layout">
+    <div class="importance-visual fade-up">
+      <div class="stat-block">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">студентів визнають, що стикались зі спробами списати у своєму оточенні</div>
+      </div>
+      <div class="stat-block gold">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">вища ймовірність етичних порушень у роботі серед тих, хто списував у навчанні</div>
+      </div>
+    </div>
+
+    <div class="importance-points fade-up">
+      <div class="importance-point">
+        <h3> Якість освіти</h3>
+        <p>Чесне навчання формує справжні знання та навички. Студент, який самостійно розв'язує задачі, стає компетентним фахівцем — на відміну від того, хто просто копіює відповіді.</p>
+      </div>
+      <div class="importance-point">
+        <h3> Достовірність науки</h3>
+        <p>Наукові відкриття рятують життя та рухають цивілізацію. Сфабриковані дані або плагіат у дослідженнях можуть призвести до катастрофічних наслідків — від хибних ліків до невірних технологічних рішень.</p>
+      </div>
+      <div class="importance-point">
+        <h3> Справедливість</h3>
+        <p>Коли одні чесно вчаться, а інші обманюють і отримують ті ж оцінки, порушується фундаментальний принцип справедливості. Це демотивує чесних студентів і знецінює дипломи.</p>
+      </div>
+      <div class="importance-point">
+        <h3> Суспільна довіра</h3>
+        <p>Довіра до лікарів, інженерів, юристів і вчених ґрунтується на переконанні, що вони справді здобули свою кваліфікацію. Без академічної доброчесності ця довіра руйнується.</p>
+      </div>
+      <div class="importance-point">
+        <h3> Розвиток характеру</h3>
+        <p>Навички, звички та цінності, закладені в навчанні, переходять у подальше життя. Чесна поведінка у студентські роки формує доброчесного громадянина та фахівця.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="violations">
+  <div class="section-label">Типи порушень</div>
+  <h2 class="section-title">Що вважається<br>академічною нечесністю</h2>
+  <p class="section-intro">Важливо розуміти не лише що таке доброчесність, але і що є її порушенням — часто межа менш очевидна, ніж здається.</p>
+
+  <div class="violations-grid fade-up">
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg>
+      </div>
+      <h3>Плагіат</h3>
+      <p>Використання чужих слів, ідей або роботи без належного посилання на автора. Включає дослівне копіювання, парафразування без джерела, та самоплагіат.</p>
+    </div>
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+      </div>
+      <h3>Обман та фальсифікація</h3>
+      <p>Навмисне надання хибної інформації: фабрикація даних дослідження, підробка результатів, маніпуляція джерелами або довідками.</p>
+    </div>
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+      </div>
+      <h3>Змова та списування</h3>
+      <p>Несанкціонована співпраця: списування на іспитах, виконання завдань разом там, де потрібна самостійна робота, «допомога» комусь обдурити.</p>
+    </div>
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+      </div>
+      <h3>Замовлення робіт</h3>
+      <p>Придбання готових есе, дипломних робіт або будь-яких академічних завдань за гроші — «фабрики дипломів» підривають цінність освіти.</p>
+    </div>
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3>Некоректне використання ШІ</h3>
+      <p>Видавання згенерованого штучним інтелектом тексту за власну роботу без розкриття інформації про це — нова форма академічної нечесності в цифрову епоху.</p>
+    </div>
+    <div class="violation-card">
+      <div class="violation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"/></svg>
+      </div>
+      <h3>Саботаж</h3>
+      <p>Навмисне заважання роботі інших: пошкодження досліджень, знищення матеріалів, перешкоджання доступу до ресурсів задля власної конкурентної переваги.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ukraine">
+  <div class="section-label">Контекст</div>
+  <h2 class="section-title">Академічна доброчесність<br>в Україні</h2>
+  <p class="section-intro">Україна активно формує власну культуру академічної доброчесності — з власним законодавством, інституціями та реформами.</p>
+
+  <div class="ukraine-cards fade-up">
+    <div class="ukraine-card">
+      <span class="ukraine-year">2014–2017</span>
+      <h3>Реформа вищої освіти</h3>
+      <p>Закон України «Про вищу освіту» 2014 року заклав правові підстави для академічної доброчесності. У 2017 р. внесено окрему статтю, що визначає поняття та відповідальність за порушення.</p>
+    </div>
+    <div class="ukraine-card">
+      <span class="ukraine-year">2019</span>
+      <h3>Антиплагіатні системи</h3>
+      <p>МОН запровадило обов'язкову перевірку дисертацій на плагіат через систему Unicheck. Університети зобов'язані перевіряти наукові та дипломні роботи перед захистом.</p>
+    </div>
+    <div class="ukraine-card">
+      <span class="ukraine-year">2020–нині</span>
+      <h3>Інституційні кодекси</h3>
+      <p>Провідні університети — КПІ, КНУ, НаУКМА, UCU та інші — прийняли власні кодекси академічної доброчесності та створили відповідні комітети і процедури.</p>
+    </div>
+    <div class="ukraine-card">
+      <span class="ukraine-year">Виклики</span>
+      <h3>Проблеми та реалії</h3>
+      <p>Незважаючи на прогрес, списування, «договірні» оцінки та купівля дипломних робіт залишаються поширеними явищами. Зміна культури — тривалий процес, що потребує системного підходу.</p>
+    </div>
+    <div class="ukraine-card">
+      <span class="ukraine-year">Приклади</span>
+      <h3>Гучні справи</h3>
+      <p>Викриття плагіату в дисертаціях публічних осіб — міністрів, ректорів, депутатів — привернули увагу суспільства та дали поштовх до більш серйозного ставлення до проблеми.</p>
+    </div>
+    <div class="ukraine-card">
+      <span class="ukraine-year">Майбутнє</span>
+      <h3>Шлях до змін</h3>
+      <p>Освітні реформи, активне громадянське суспільство, міжнародна інтеграція та нове покоління студентів і викладачів поступово будують нову культуру академічної чесності в Україні.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="pledge">
+  <div class="section-label">Особиста відповідальність</div>
+  <h2 class="section-title">Клятва академічної доброчесності</h2>
+  <p class="section-intro" style="margin: 0 auto;">Кожна зміна починається з особистого рішення. Приєднайтесь до спільноти тих, хто обирає чесність.</p>
+
+  <div class="pledge-box fade-up">
+    <p class="pledge-text">
+      «Я зобов'язуюсь навчатись та досліджувати чесно і самостійно. Я не буду привласнювати чужих ідей без визнання авторства. Я не списуватиму і не сприятиму обману інших. Я обираю знання, здобуте власними зусиллями.»
+    </p>
+    <button class="pledge-sig" id="signBtn" onclick="signPledge()">Підписати клятву</button>
+    <p class="pledge-signed" id="pledgeDone"> Дякуємо! Ви приєдналися до спільноти академічної доброчесності.</p>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-logo">Академічна <span>Доброчесність</span></div>
+  <p>© 2026 </p>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        if (e.target.classList.contains('timeline')) {
+          e.target.querySelectorAll('.timeline-item').forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 150);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up, .timeline').forEach(el => observer.observe(el));
+
+  function signPledge() {
+    document.getElementById('signBtn').style.display = 'none';
+    document.getElementById('pledgeDone').style.display = 'block';
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
